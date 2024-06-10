@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pizza;
+use App\Models\Producto;
 use App\Models\Tamano;
 use App\Models\Categoria;
+use App\Models\Descuento;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -23,6 +24,12 @@ class MenuSeeder extends Seeder
         $normales = Categoria::create([
             'nombre' => 'NORMALES'
         ]);
+        $vegetariano = Categoria::create([
+            'nombre' => 'VEGETARIANO'
+        ]);
+        $especial = Categoria::create([
+            'nombre' => 'ESPECIAL'
+        ]);
 
         $pequeño = Tamano::create([
             'nombre' => 'PEQUEÑA'
@@ -31,260 +38,116 @@ class MenuSeeder extends Seeder
         $grande = Tamano::create([
             'nombre' => 'GRANDE'
         ]);
-
-        //pizzas especiales
-        Pizza::create([
-            'nombre' => 'CHESSEBURGER - GRANDE',
-            'precio' => 56.00,
-            'imagen_url' => "https://res.cloudinary.com/drjvgyusx/image/upload/v1716610496/sushi3_mz1wnj.png",
-            'descripcion' => 'CARNE MOLIDA, TOCINO Y CHEDDAR.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $premium->id
+        $cero = Descuento::create([
+            'descuento' => 0.0
+        ]);
+        $diez = Descuento::create([
+            'descuento' => 0.1
+        ]);
+        $cintuenta = Descuento::create([
+            'descuento' => 0.5
         ]);
 
-        Pizza::create([
-            'nombre' => 'CHESSEBURGER - PEQUEÑA',
-            'precio' => 32.00,
-            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1716610496/sushi9_j5ollk.png',
-            'descripcion' => 'CARNE MOLIDA, TOCINO Y CHEDDAR.',
+        //Productos especiales
+        Producto::create([
+            'nombre' => 'SALMÓN SUPREME - GRANDE',
+            'precio' => 18.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/SalmonSupreme_lduorv.jpg',
+            'descripcion' => 'SALMÓN, AGUACATE Y QUESO CREMA.',
+            'tamano_id' => $grande->id,
+            'categoria_id' => $especial->id,
+            'descuento_id' => $diez->id
+        ]);
+        
+        Producto::create([
+            'nombre' => 'SALMÓN SUPREME - PEQUEÑO',
+            'precio' => 12.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995599/salmonsupremepeq_ht1yhj.jpg',
+            'descripcion' => 'SALMÓN, AGUACATE Y QUESO CREMA.',
             'tamano_id' => $pequeño->id,
-            'categoria_id' => $premium->id
+            'categoria_id' => $especial->id,
+            'descuento_id' => $diez->id
         ]);
-
-        Pizza::create([
-            'nombre' => '4 QUESOS - GRANDE',
-            'precio' => 56.00,
-            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1716610493/sushi7_iw85hz.jpg',
-            'descripcion' => 'MOZZARELLA, CHEDDAR, REQUESÓN Y ROQUEFORT.',
+        
+        Producto::create([
+            'nombre' => 'TUNA DELIGHT - GRANDE',
+            'precio' => 20.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/tunadel_njqzss.jpg',
+            'descripcion' => 'ATÚN, PEPINO Y SALSA DE ANGUILA.',
             'tamano_id' => $grande->id,
-            'categoria_id' => $premium->id
+            'categoria_id' => $premium->id,
+            'descuento_id' => $diez->id
         ]);
-
-        Pizza::create([
-            'nombre' => '4 QUESOS - PEQUEÑA',
-            'precio' => 32.00,
-            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1716610493/sushi8_h8upzw.jpg',
-            'descripcion' => 'MOZZARELLA, CHEDDAR, REQUESÓN Y ROQUEFORT.',
+        
+        Producto::create([
+            'nombre' => 'TUNA DELIGHT - PEQUEÑO',
+            'precio' => 14.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/tunadelipe_ua3qhf.jpg',
+            'descripcion' => 'ATÚN, PEPINO Y SALSA DE ANGUILA.',
             'tamano_id' => $pequeño->id,
-            'categoria_id' => $premium->id
+            'categoria_id' => $premium->id,
+            'descuento_id' => $diez->id
         ]);
-
-        Pizza::create([
-            'nombre' => 'STROGONOFF - GRANDE',
-            'precio' => 54.00,
-            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1716610492/sushi2_htba7j.jpg',
-            'descripcion' => 'POLLO, JAMÓN, PAPAS FRITAS Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'STROGONOFF - PEQUEÑA',
-            'precio' => 30.00,
-            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1716610492/sushi6_vkjbza.jpg',
-            'descripcion' => 'POLLO, JAMÓN, PAPAS FRITAS Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'CARNIVORA - GRANDE',
-            'precio' => 54.00,
-            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1716610492/sushi4_kks1ev.jpg',
-            'descripcion' => 'CARNE MOLIDA, JAMÓN, CHOCLO Y CHEDDAR.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'CARNIVORA - PEQUEÑA',
-            'precio' => 30.00,
-            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1716610490/sushi1_c4vyqp.jpg',
-            'descripcion' => 'CARNE MOLIDA, JAMÓN, CHOCLO Y CHEDDAR.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'PERNIL - GRANDE',
-            'precio' => 52.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101685/Pernil_oapxf1.jpg',
-            'descripcion' => 'PERNIL DE CERDO, PIMENTÓN, CHOCLO Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'PERNIL - PEQUEÑA',
-            'precio' => 28.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101685/Pernil_oapxf1.jpg',
-            'descripcion' => 'PERNIL DE CERDO, PIMENTÓN, CHOCLO Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        Pizza::create([
-            'nombre' => '3 QUESOS - GRANDE',
-            'precio' => 50.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101686/TresQuesos_ona1hf.jpg',
-            'descripcion' => 'MOZZARELLA, CHEDDAR Y REQUESÓN.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        Pizza::create([
-            'nombre' => '3 QUESOS - PEQUEÑA',
-            'precio' => 28.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101686/TresQuesos_ona1hf.jpg',
-            'descripcion' => 'MOZZARELLA, CHEDDAR Y REQUESÓN.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $premium->id
-        ]);
-
-        //pizzas ordinarias
-
-        Pizza::create([
-            'nombre' => 'CALABRESA - GRANDE',
-            'precio' => 48.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101682/Calabresa_ow4yvl.jpg',
-            'descripcion' => 'CALABRESA, MOZZARELLA, CHOCLO O ACEITUNAS.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'CALABRESA - PEQUEÑA',
-            'precio' => 26.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101682/Calabresa_ow4yvl.jpg',
-            'descripcion' => 'CALABRESA, MOZZARELLA, CHOCLO O ACEITUNAS.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'AMERICANA - GRANDE',
-            'precio' => 48.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101686/Americana_gcr3xy.jpg',
-            'descripcion' => 'HUEVO, TOCINO Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'AMERICANA - PEQUEÑA',
-            'precio' => 26.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101686/Americana_gcr3xy.jpg',
-            'descripcion' => 'HUEVO, TOCINO Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'PEPERONI - GRANDE',
-            'precio' => 48.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101686/Peperoni_ahvta0.jpg',
-            'descripcion' => 'PEPERONI Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'PEPERONI - PEQUEÑA',
-            'precio' => 26.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101686/Peperoni_ahvta0.jpg',
-            'descripcion' => 'PEPERONI Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'VEGETARIANA - GRANDE',
-            'precio' => 48.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101687/Vegetariana_wmjio1.jpg',
-            'descripcion' => 'TOMATE, CHAMPIÑONES, PIMENTÓN, CHOCLO Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'VEGETARIANA - PEQUEÑA',
-            'precio' => 26.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101687/Vegetariana_wmjio1.jpg',
-            'descripcion' => 'TOMATE, CHAMPIÑONES, PIMENTÓN, CHOCLO Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'HAWAIANA - GRANDE',
-            'precio' => 46.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101683/Hawaiana_tct2sz.jpg',
-            'descripcion' => 'JAMÓN, PIÑA Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'HAWAIANA - PEQUEÑA',
-            'precio' => 24.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101683/Hawaiana_tct2sz.jpg',
-            'descripcion' => 'JAMÓN, PIÑA Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'CLÁSICA - GRANDE',
-            'precio' => 44.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101683/Clasica_zlmovf.jpg',
-            'descripcion' => 'JAMÓN, CHOCLO Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'CLÁSICA - PEQUEÑA',
-            'precio' => 24.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101683/Clasica_zlmovf.jpg',
-            'descripcion' => 'JAMÓN, CHOCLO Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'MARGARITA - GRANDE',
-            'precio' => 40.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101683/Margarita_e5usaj.jpg',
-            'descripcion' => 'TOMATE Y MOZZARELLA.',
-            'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'MARGARITA - PEQUEÑA',
+        
+        Producto::create([
+            'nombre' => 'TEMPURA ROLL - GRANDE',
             'precio' => 22.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101683/Margarita_e5usaj.jpg',
-            'descripcion' => 'TOMATE Y MOZZARELLA.',
-            'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
-        ]);
-
-        Pizza::create([
-            'nombre' => 'ECONÓMICA - GRANDE',
-            'precio' => 38.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101684/Economica_noy7za.jpg',
-            'descripcion' => 'MOZZARELLA Y ORÉGANO.',
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/tempurarollgrande_vgfouz.jpg',
+            'descripcion' => 'LANGOSTA TEMPURADA, AGUACATE Y MAYONESA PICANTE.',
             'tamano_id' => $grande->id,
-            'categoria_id' => $normales->id
+            'categoria_id' => $normales->id,
+            'descuento_id' => $cero->id
         ]);
-
-        Pizza::create([
-            'nombre' => 'ECONÓMICA - PEQUEÑA',
-            'precio' => 22.00,
-            'imagen_url' => 'https://res.cloudinary.com/dt0pbqivj/image/upload/v1702101684/Economica_noy7za.jpg',
-            'descripcion' => 'MOZZARELLA Y ORÉGANO.',
+        
+        Producto::create([
+            'nombre' => 'TEMPURA ROLL - PEQUEÑO',
+            'precio' => 16.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/tempurarollpe_gdoi5s.jpg',
+            'descripcion' => 'LANGOSTA TEMPURADA, AGUACATE Y MAYONESA PICANTE.',
             'tamano_id' => $pequeño->id,
-            'categoria_id' => $normales->id
+            'categoria_id' => $especial->id,
+            'descuento_id' => $cintuenta->id
         ]);
+        
+        Producto::create([
+            'nombre' => 'VEGGIE ROLL - GRANDE',
+            'precio' => 15.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/vegguirollgrande_avo4gj.jpg',
+            'descripcion' => 'ZANAHORIA, PEPINO Y AGUACATE.',
+            'tamano_id' => $grande->id,
+            'categoria_id' => $normales->id,
+            'descuento_id' => $cero->id
+        ]);
+        
+        Producto::create([
+            'nombre' => 'VEGGIE ROLL - PEQUEÑO',
+            'precio' => 10.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995599/Vegguirollpe_cfooxu.jpg',
+            'descripcion' => 'ZANAHORIA, PEPINO Y AGUACATE.',
+            'tamano_id' => $pequeño->id,
+            'categoria_id' => $vegetariano->id,
+            'descuento_id' => $diez->id
+        ]);
+        
+        Producto::create([
+            'nombre' => 'DRAGON ROLL - GRANDE',
+            'precio' => 24.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/dragonroollgr_yepadj.jpg',
+            'descripcion' => 'ANGUILA, AGUACATE Y CAVIAR.',
+            'tamano_id' => $grande->id,
+            'categoria_id' => $premium->id,
+            'descuento_id' => $cintuenta->id
+        ]);
+        
+        Producto::create([
+            'nombre' => 'DRAGON ROLL - PEQUEÑO',
+            'precio' => 18.00,
+            'imagen_url' => 'https://res.cloudinary.com/drjvgyusx/image/upload/v1717995598/dragonroolpe_knlmf3.jpg',
+            'descripcion' => 'ANGUILA, AGUACATE Y CAVIAR.',
+            'tamano_id' => $normales->id,
+            'categoria_id' => $premium->id,
+            'descuento_id' => $cero->id
+        ]);
+        
     }
 }

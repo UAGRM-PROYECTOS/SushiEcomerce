@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -13,22 +13,22 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
 
-                    @if (auth()->user()->hasCliente())
-                    <x-nav-link href="{{ route('pizzas.index') }}" :active="request()->routeIs('pizzas.index')">
+                    
+                    <x-nav-link href="{{ route('productos.index') }}" :active="request()->routeIs('productos.index')">
                         {{ __('Menú') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('detalle_pedido.index') }}" :active="request()->routeIs('detalle_pedido.index')">
+                    <x-nav-link href="">
                         {{ __('Carrito de compras') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('pedidos.index') }}" :active="request()->routeIs('pedidos.index')">
+                    <x-nav-link href="">
                         {{ __('Historial de pedidos') }}
                     </x-nav-link>
-                    @endif
+                 
                     @if (auth()->user()->is_admin)
                     <x-nav-link href="">
                         {{ __('Catalogo') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs('clientes.index')">
+                    <x-nav-link href="">
                         {{ __('Clientes') }}
                     </x-nav-link>
                     <livewire:general-search>
@@ -162,23 +162,23 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @if (auth()->user()->hasCliente())
-            <x-responsive-nav-link href="{{ route('pizzas.index') }}" :active="request()->routeIs('pizzas.index')">
+           
+            <x-responsive-nav-link href="{{ route('productos.index') }}" :active="request()->routeIs('productos.index')">
                 {{ __('Menú') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('detalle_pedido.index') }}" :active="request()->routeIs('detalle_pedido.index')">
+            <x-responsive-nav-link href="">
                 {{ __('Carrito de compras') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('pedidos.index') }}" :active="request()->routeIs('pedidos.index')">
+            <x-responsive-nav-link href="">
                 {{ __('Historial de pedidos') }}
             </x-responsive-nav-link>
-            @endif
+            
             @if (auth()->user()->is_admin)
 
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link href="">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs('clientes.index')">
+            <x-responsive-nav-link href="">
                 {{ __('Clientes') }}
             </x-responsive-nav-link>
             <livewire:general-search>

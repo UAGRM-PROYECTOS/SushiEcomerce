@@ -33,13 +33,6 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        Cliente::create([
-            'user_id' => $user->id,
-            'ci_nit' => $input['ci_nit'],
-            'numeroTelf' => $input['numeroTelf'],
-            'direccion' => $input['direccion']
-        ]);
-
         return $user;
 
     }

@@ -16,11 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MenuSeeder::class,
             AdminSeeder::class,
-            ClienteSeeder::class,
-            MetodoPagosSeeder::class,
-            EstadosSeeder::class,
-            CajerosSeeder::class,
-            PagoEstadosSeeder::class,
         ]);
     }
 }

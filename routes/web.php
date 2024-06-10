@@ -1,13 +1,9 @@
 <?php
 
-use App\Models\DetallePedido;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DetallePedidoController;
-use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +17,6 @@ use App\Http\Controllers\PedidoController;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    // return redirect(route('pizzas.index'));
     return redirect(route('login'));
 });
 
@@ -33,60 +27,31 @@ Route::get('/', function () {
 // ])->group(function () {
 // });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth', 'visits');
 
-
-
-Route::get('/pizzas', [PizzaController::class, 'index'])
-            ->name('pizzas.index')
-            ->middleware('auth', 'visits');
-
-Route::get('/pizzas/create', [PizzaController::class, 'create'])
-            ->name('pizzas.create')
+Route::get('/productos', [ProductoController::class, 'index'])
+            ->name('productos.index')
             ->middleware('auth');
 
-Route::get('/pizzas/{id}/edit', [PizzaController::class, 'edit'])
-            ->name('pizzas.edit')
+Route::get('/productos/create', [ProductoController::class, 'create'])
+            ->name('productos.create')
             ->middleware('auth');
 
-Route::delete('/pizzas/{id}/destroy', [PizzaController::class, 'destroy'])
-            ->name('pizzas.destroy')
+Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])
+            ->name('productos.edit')
             ->middleware('auth');
 
-Route::get('/pizzas/{id}/show', [PizzaController::class, 'show'])
-            ->name('pizzas.show')->middleware('auth')
+Route::delete('/productos/{id}/destroy', [ProductoController::class, 'destroy'])
+            ->name('productos.destroy')
             ->middleware('auth');
 
-
-
-Route::get('/clientes', [ClienteController::class, 'index'])
-            ->name('clientes.index')
-            ->middleware('auth', 'visits');
-
-Route::delete('/clientes/{id}', [ClienteController::class, 'destroy'])
-            ->name('clientes.destroy')
+Route::get('/productos/{id}/show', [ProductoController::class, 'show'])
+            ->name('productos.show')->middleware('auth')
             ->middleware('auth');
-
 
 Route::get('/search/{query}', [SearchController::class, 'index'])
             ->name('search.index')
             ->middleware('auth');
 
-
-Route::get('/carrito', [DetallePedidoController::class, 'index'])
-            ->name('detalle_pedido.index')
-            ->middleware('auth');
-
-
 Route::get('/cajero/view', function(){
     return view('cajero.view');
 })->name('cajero.view')->middleware('auth');
-
-
-Route::post('/api/callback', [PedidoController::class, 'callback'])
-            ->name('callback');
-
-
-Route::get('/pedidos', [PedidoController::class, 'index'])
-            ->name('pedidos.index')
-            ->middleware('auth','visits');
