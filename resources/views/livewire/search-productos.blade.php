@@ -3,7 +3,7 @@
 
     <div class="max-w-7xl mx-auto">
         <form wire:submit.prevent='sendData'>
-            <div class="md:grid md:grid-cols-3 gap-5">
+            <div class="md:grid md:grid-cols-5 gap-5">
                 <div class="mb-5">
                     <label
                         class="block mb-1 text-sm text-gray-700 uppercase font-bold "

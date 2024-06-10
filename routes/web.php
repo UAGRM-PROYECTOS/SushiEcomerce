@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,11 @@ Route::get('/search/{query}', [SearchController::class, 'index'])
 Route::get('/cajero/view', function(){
     return view('cajero.view');
 })->name('cajero.view')->middleware('auth');
+
+/**---------------------ibex-crud/generator ->bootstrap---------------------------------**/
+Route::resource('categorias', CategoriaController::class);
+/*----------------------ibex-crud/crud/generator ->Livewire----------------------------------*/
+Route::get('/tamanos', \App\Livewire\Tamanos\Index::class)->name('tamanos.index');
+Route::get('/tamanos/create', \App\Livewire\Tamanos\Create::class)->name('tamanos.create');
+Route::get('/tamanos/show/{tamano}', \App\Livewire\Tamanos\Show::class)->name('tamanos.show');
+Route::get('/tamanos/update/{tamano}', \App\Livewire\Tamanos\Edit::class)->name('tamanos.edit');

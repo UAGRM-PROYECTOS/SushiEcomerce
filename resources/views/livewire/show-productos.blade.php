@@ -10,6 +10,8 @@
                 <span class="font-bold capitalize">Descripción: </span>
                 {{$producto->descripcion}}
             </p>
+            <p class=" px-3"><span class="font-bold">Categoria:</span> {{ $producto->categoria->nombre }}.</p>
+            <p class=" px-3"><span class="font-bold">Tamano:</span> {{$producto->tamano->nombre}}.</p>
 
         </div>
     </div>

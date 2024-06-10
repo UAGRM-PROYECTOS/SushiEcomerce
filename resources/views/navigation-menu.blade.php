@@ -17,22 +17,8 @@
                     <x-nav-link href="{{ route('productos.index') }}" :active="request()->routeIs('productos.index')">
                         {{ __('Menú') }}
                     </x-nav-link>
-                    <x-nav-link href="">
-                        {{ __('Carrito de compras') }}
-                    </x-nav-link>
-                    <x-nav-link href="">
-                        {{ __('Historial de pedidos') }}
-                    </x-nav-link>
-                 
-                    @if (auth()->user()->is_admin)
-                    <x-nav-link href="">
-                        {{ __('Catalogo') }}
-                    </x-nav-link>
-                    <x-nav-link href="">
-                        {{ __('Clientes') }}
-                    </x-nav-link>
+                   
                     <livewire:general-search>
-                    @endif
                     @if (auth()->user()->is_cajero)
                     <x-nav-link href="{{ route('cajero.view') }}" :active="request()->routeIs('cajero.view')">
                         {{ __('Cajero') }}
